@@ -1,0 +1,2 @@
+# milvus_similar_search
+基于bge基础模型结合milvus向量数据库的相似检索任务
