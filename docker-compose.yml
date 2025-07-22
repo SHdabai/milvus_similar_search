@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  similar_search:
+    image: similar_search:dev-1.0
+    runtime: nvidia  # 关键：启用 NVIDIA 运行时
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1  # 使用 1 个 GPU
+              capabilities: [gpu]  # 声明 GPU 能力
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONPATH=/home/similar_search
+#      NVIDIA_VISIBLE_DEVICES: all  # 可选：暴露所有 GPU
+    ports:
+      - "31007:31007"
+#      - "31006:31006"
+#      - "9091:9091"
+#      - "2379:2379"
+    restart: always
+    container_name: similar_search_01
+    privileged: true
+    volumes:
+      - /home/yanghaizhao/bert_work/similar_search:/home/similar_search
+      - /home/yanghaizhao/bert_work/BAAI:/home/BAAI
+      - /etc/localtime:/etc/localtime
+    shm_size: 8g
+#    environment:
+#      - PYTHONPATH=/home/similar_search
+    working_dir: /home/similar_search
+    command: hypercorn apps:app -c hypercorn.toml
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m" #每个日志文件是 100M
+        max-file: "3"  #z最多保留3个日志文件
+
+
+
+
+#        docker logs similar_search_12537  docker 查看容器日志

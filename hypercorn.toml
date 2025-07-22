@@ -1,0 +1,42 @@
+# ！/usr/bin/env python
+# -*-coding:Utf-8 -*-
+# Time:  15:23
+# FileName: hypercorn_config
+# Tools: PyCharm
+# hypercorn_config.py
+
+
+# 切换到的工作目录
+chdir = '/home/similar_search'
+
+# 超时设置
+timeout = 120
+
+# 启动的进程数（设置为 1）
+workers = 1
+
+worker_class = "asyncio"
+keep_alive_timeout = 5
+# 请求队列的最大长度
+backlog = 512
+
+# 最大客户端并发数量
+max_requests = 1000
+
+# 是否以守护进程启动，默认 false
+daemon = false
+
+# 绑定地址和端口
+bind = ["0.0.0.0:31007"]
+
+# 日志级别
+loglevel = "info"
+
+# 访问日志格式
+access_log_format = "%(h)s %(r)s %(s)s"
+
+
+
+# 访问记录日志，使用标准输出
+accesslog = "-"
+errorlog = "-"
