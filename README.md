@@ -38,13 +38,19 @@ hypercorn apps.py:app -c hypercorn.toml
 
 
 nohup hypercorn apps.py:app --bind 0.0.0.0:31007 > log/server_logs.txt 2>&1 &
+
     > 表示 覆盖写入 日志文件；
+    
     每次启动都会清空 log/server_logs.txt 里的内容，写入新的日志；
+    
     ✅ 适合你每次都想从头查看服务运行情况的场景。
 
 nohup hypercorn apps.py:app --bind 0.0.0.0:31007 >> log/server_logs.txt 2>&1 &
+
     >> 表示 追加写入；
+    
     日志会不断追加到 log/server_logs.txt 文件末尾；
+    
     ✅ 适合长期运行服务，保留所有历史日志。
 
 ✅ & 表示后台运行
