@@ -28,6 +28,7 @@ curl -X POST http://localhost:8000/collection/delete \
 
 
 #------------------------启动服务-------------------------
+
 similar_search #环境名称
 命令行启动主程序不使用docker
 hypercorn apps.py:app -c hypercorn.toml
@@ -49,6 +50,7 @@ nohup hypercorn apps.py:app --bind 0.0.0.0:31007 >> log/server_logs.txt 2>&1 &
 
 
 #------------------------停止服务-------------------------
+
 **查看日志信息**
 tail -n 5 log/output*.log
 
