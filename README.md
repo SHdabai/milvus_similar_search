@@ -67,6 +67,7 @@ tail -n 5 log/output*.log
 **查看31007端口号使用情况**
 
 sudo netstat -tulnp | grep 31007
+
 sudo kill -9 <进程号>
 
 
